@@ -6,21 +6,23 @@ import path from "path";
 import { Users } from "./collections/User";
 import dotenv from "dotenv";
 
-dotenv.config({ path: path.resolve(__dirname, ".././.env"),});
+dotenv.config({
+  path: path.resolve(__dirname, '../.env'),
+})
 
 export default buildConfig({
-  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || "",
-  collections: [Users],
+  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || '',
+  collections: [Users,], 
   routes: {
-    admin: "/sell",
+    admin: '/sell',
   },
   admin: {
-    user: "users",
+    user: 'users',
     bundler: webpackBundler(),
     meta: {
-      titleSuffix: "-DigitalHippo",
-      favicon: "/favicon.ico",
-      ogImage: "/thumbnail.jpg",
+      titleSuffix: '- DigitalHippo',
+      favicon: '/favicon.ico',
+      ogImage: '/thumbnail.jpg',
     },
   },
   rateLimit: {
@@ -31,6 +33,6 @@ export default buildConfig({
     url: process.env.MONGODB_URL!,
   }),
   typescript: {
-    outputFile: path.resolve(__dirname, "payload-types.ts"),
+    outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
-});
+})
