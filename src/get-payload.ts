@@ -1,27 +1,22 @@
-import dotenv from "dotenv";
-import path from "path";
-import type { InitOptions } from "payload/config";
-import payload, { Payload } from "payload";
-import nodemailer from "nodemailer";
+import dotenv from 'dotenv';
+import path from 'path';
+import type { InitOptions } from 'payload/config';
+import payload, { Payload } from 'payload';
+import nodemailer from 'nodemailer';
 
 dotenv.config({
-  path: path.resolve(__dirname, "../.env"),
+  path: path.resolve(__dirname, '../.env'),
 });
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.resend.com",
+  host: 'smtp.resend.com',
   secure: true,
   port: 465,
   auth: {
-    user: "resend",
-    pass: process.env.RESEND_API_KEY
-  }
+    user: 'resend',
+    pass: process.env.RESEND_API_KEY,
+  },
 });
-
-// Debugging logs
-console.log("PAYLOAD_SECRET:", process.env.PAYLOAD_SECRET);
-console.log("MONGODB_URL:", process.env.MONGODB_URL);
-console.log("NEXT_PUBLIC_SERVER_URL:", process.env.NEXT_PUBLIC_SERVER_URL);
 
 let cached = (global as any).payload;
 
@@ -36,9 +31,11 @@ interface Args {
   initOptions?: Partial<InitOptions>;
 }
 
-export const getPayloadClient = async ({ initOptions }: Args = {}): Promise<Payload> => {
+export const getPayloadClient = async ({
+  initOptions,
+}: Args = {}): Promise<Payload> => {
   if (!process.env.PAYLOAD_SECRET) {
-    throw new Error("PAYLOAD_SECRET is missing");
+    throw new Error('PAYLOAD_SECRET is missing');
   }
 
   if (cached.client) {
@@ -49,8 +46,8 @@ export const getPayloadClient = async ({ initOptions }: Args = {}): Promise<Payl
     cached.promise = payload.init({
       email: {
         transport: transporter,
-        fromAddress: "onboarding@resend.dev",
-        fromName: "digitalhippo",
+        fromAddress: 'onboarding@resend.dev',
+        fromName: 'DigitalHippo',
       },
       secret: process.env.PAYLOAD_SECRET,
       local: initOptions?.express ? false : true,
