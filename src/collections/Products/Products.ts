@@ -53,7 +53,7 @@ export const Products: CollectionConfig = {
       hasMany: false,
     },
     {
-      name: "approvesForSale",
+      name: "approvedForSale",
       label: "Product Status",
       type: "select",
       defaultValue: "pending",
