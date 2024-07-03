@@ -38,7 +38,8 @@ export const appRouter = router({
       } = await payload.find({
         collection: "products",
         where: {
-          approvedForSale: { // Ensure this matches the field name in your configuration
+          approvedForSale: {
+            // Ensure this matches the field name in your configuration
             equals: "approved",
           },
           ...parsedQueryOpts,
