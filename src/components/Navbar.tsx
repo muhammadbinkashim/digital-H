@@ -1,12 +1,12 @@
 import Link from 'next/link'
 import MaxWidthWrapper from './MaxWidthWrapper'
 import { Icons } from './Icons'
-import NavItems from './NavItems'
 import { buttonVariants } from './ui/button'
 import Cart from './Cart'
 import { getServerSideUser } from '@/lib/payload-utils'
 import { cookies } from 'next/headers'
 import UserAccountNav from './UserAccountNav'
+import NavItems from './NavItems'
 
 const Navbar = async () => {
   const nextCookies = cookies()
@@ -27,7 +27,7 @@ const Navbar = async () => {
               </div>
 
               <div className='hidden z-50 lg:ml-8 lg:block lg:self-stretch'>
-                <NavItems />
+                <NavItems/>
               </div>
 
               <div className='ml-auto flex items-center'>
